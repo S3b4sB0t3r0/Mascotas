@@ -34,6 +34,18 @@
       "nombre_user": "Gladys",
       "correo_user": "Gladys@gmail.com",
       "password": "123456"
+    },
+    {
+      "id": "72c1",
+      "nombre_user": "Valeria",
+      "correo_user": "dfdsfdsf@gmail.com",
+      "password": "1234"
+    },
+    {
+      "id": "ba6d",
+      "nombre_user": "Valeria",
+      "correo_user": "Valeria@gmail.com",
+      "password": "1234"
     }
   ],
   "products": []
