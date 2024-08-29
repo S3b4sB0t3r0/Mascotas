@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sobre Nosotros - Tienda Pound</title>
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            background-color: #c39bd3; /* Color de fondo del header */
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            position: relative;
+        }
+
+        header img {
+            max-width: 150px;
+            height: auto;
+        }
+
+        .back-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            padding: 10px;
+            background-color: white;
+            color: #c39bd3;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .back-button::before {
+            content: '←';
+            font-size: 20px;
+            margin-right: 5px;
+        }
+
+        .back-button:hover {
+            background-color: #e1bee7;
+        }
+
+        .container {
+            flex: 1;
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .about-section, .contact-section {
+            background-color: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .about-section h2, .contact-section h2 {
+            margin-top: 0;
+            color: #343a40;
+        }
+
+        .contact-section form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .contact-section label {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        .contact-section input, .contact-section textarea {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-top: 5px;
+        }
+
+        .contact-section button {
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #c39bd3;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .contact-section button:hover {
+            background-color: #c39bd3;
+        }
+
+        footer {
+            background-color: #c39bd3; /* Color de fondo del footer */
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            margin-top: auto;
+        }
+
+        .navbar {
+            background-color: #c39bd3; /* Color de fondo de la barra de navegación */
+            padding: 10px;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            padding: 10px;
+            display: inline-block;
+        }
+
+        .navbar a:hover {
+            background-color: #a569bd;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="indexTienda.html" class="back-button">Regresar</a>
+        <img src="assets/logo.png" alt="Tienda Pound Logo">
+        <p>Conoce más sobre nosotros</p>
+    </header>
+    <div class="container">
+        <!-- Sección Sobre Nosotros -->
+        <section class="about-section">
+            <h2>Sobre Nosotros</h2>
+            <p>En Tienda Pound, nuestra misión es proporcionar a tus mascotas los mejores productos y servicios disponibles en el mercado. Fundada en 2020, nuestra tienda nació del amor y la pasión por los animales y el deseo de ofrecer una experiencia de compra única para los dueños de mascotas.</p>
+            <p>Nuestra historia comienza con un grupo de amigos que compartían una visión común: crear un lugar donde los dueños de mascotas pudieran encontrar productos de alta calidad y obtener asesoramiento experto. Desde entonces, hemos crecido significativamente, pero nuestra misión sigue siendo la misma: cuidar de tus mascotas como si fueran nuestras.</p>
+            <p>Nos enorgullece ofrecer una amplia gama de productos, desde comida y accesorios hasta juguetes y artículos de cuidado, siempre buscando las mejores marcas y los productos más innovadores. Además, nuestro equipo de atención al cliente está siempre dispuesto a ayudarte con cualquier duda o consulta que puedas tener.</p>
+            <p>Gracias por elegirnos como tu tienda de confianza. Estamos comprometidos a seguir mejorando y a brindar lo mejor para ti y tus mascotas.</p>
+        </section>
+
+        <!-- Sección Contáctanos -->
+        <section class="contact-section">
+            <h2>Contáctanos</h2>
+            <form id="contactForm" onsubmit="return validateContactForm()">
+                <label for="name">Nombre:</label>
+                <input type="text" id="name" name="name" required>
+
+                <label for="email">Correo Electrónico:</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="message">Mensaje:</label>
+                <textarea id="message" name="message" rows="4" required></textarea>
+
+                <button type="submit">Enviar Mensaje</button>
+            </form>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Tienda Pound. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+        function validateContactForm() {
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const message = document.getElementById('message').value.trim();
+
+            if (!name || !email || !message) {
+                alert('Por favor, completa todos los campos.');
+                return false;
+            }
+
+            if (!validateEmail(email)) {
+                alert('Por favor, ingresa una dirección de correo electrónico válida.');
+                return false;
+            }
+
+            alert('Mensaje enviado correctamente.');
+            return true;
+        }
+
+        function validateEmail(email) {
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(email);
+        }
+    </script>
+</body>
+</html>

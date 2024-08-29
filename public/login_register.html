@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login y Registro - Tienda Pound</title>
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <link href="css/styles.css" rel="stylesheet" />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f8f9fa;
+        color: #333;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        flex-direction: column;
+        position: relative;
+      }
+
+      .container {
+        width: 90%; 
+        max-width: 400px;
+        padding: 20px;
+        background-color: #fff;
+        border: 2px solid #c39bd3;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .logo {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+
+      .logo img {
+        width: 80%; 
+        height: auto;
+      }
+
+      h2 {
+        text-align: center;
+        margin-bottom: 20px;
+        color: #c39bd3;
+      }
+
+      input[type="text"],
+      input[type="email"],
+      input[type="password"] {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+        border: 1px solid #c39bd3;
+        border-radius: 5px;
+        box-sizing: border-box;
+      }
+
+      .btn {
+        width: 100%;
+        padding: 10px;
+        background-color: #c39bd3;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-bottom: 10px;
+      }
+
+      .btn:hover {
+        background-color: #a974c1;
+      }
+
+      .toggle-link {
+        display: block;
+        text-align: center;
+        color: #c39bd3;
+        cursor: pointer;
+        margin-top: 10px;
+      }
+
+      .toggle-link:hover {
+        text-decoration: underline;
+      }
+
+      .footer {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        background-color: #c39bd3;
+        color: white;
+        text-align: center;
+        padding: 10px;
+      }
+
+      .back-arrow {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        text-decoration: none;
+        color: #c39bd3;
+        font-size: 24px;
+        display: flex;
+        align-items: center;
+      }
+
+      .back-arrow::before {
+        content: "";
+        display: block;
+        width: 0;
+        height: 0;
+        border-top: 12px solid transparent;
+        border-right: 12px solid #c39bd3;
+        border-bottom: 12px solid transparent;
+        margin-right: 8px;
+      }
+
+      .back-arrow:hover {
+        color: #a974c1;
+      }
+    </style>
+</head>
+<body>
+    <a href="indexTienda.html" class="back-arrow">Volver</a>
+
+    <div class="logo">
+      <img src="./assets/logo.png" alt="Logo Tienda Pound" />
+    </div>
+
+    <div class="container" id="login-container">
+        <h2>Iniciar Sesión</h2>
+        <form id="loginForm">
+            <input type="text" id="username" placeholder="Usuario" required />
+            <input type="password" id="password" placeholder="Contraseña" required />
+            <button type="submit" class="btn">Entrar</button>
+        </form>
+        <a class="toggle-link" id="toRegister">¿No tienes una cuenta? Regístrate aquí</a>
+    </div>
+
+    <div class="container" id="register-container" style="display: none">
+        <h2>Registrarse</h2>
+        <form id="registerForm">
+            <input type="text" id="newUsername" placeholder="Usuario" required />
+            <input type="email" id="email" placeholder="Correo Electrónico" required />
+            <input type="password" id="newPassword" placeholder="Contraseña" required />
+            <button type="submit" class="btn">Registrar</button>
+        </form>
+        <a class="toggle-link" id="toLogin">¿Ya tienes una cuenta? Inicia sesión aquí</a>
+    </div>
+
+    <div class="footer">
+        ¡Bienvenido a Tienda Pound, tu tienda de confianza!
+    </div>
+      <script src="scripts/scripts.js"></script>
+</body>
+</html>

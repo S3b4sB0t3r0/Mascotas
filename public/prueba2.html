@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio | Tu Tienda</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .card {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .card-img-top {
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .card-body {
+            text-align: center;
+        }
+        
+        .notification {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            padding: 10px;
+            background: #28a745;
+            color: white;
+            border-radius: 5px;
+            display: none;
+        }
+        
+        .notification.show {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Barra de navegación -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="#">Tu Tienda</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="productos.html">Productos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#cartModal">Carrito</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Sección de productos -->
+    <section id="productSection" class="container px-4 px-lg-5">
+        <div class="row">
+            <!-- Los productos se insertarán aquí dinámicamente -->
+        </div>
+    </section>
+
+    <!-- Modal del carrito -->
+    <div class="modal fade" id="cartModal" tabindex="-1" aria-labelledby="cartModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="cartModalLabel">Carrito de Compras</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="cartItems">
+                    <!-- Los elementos del carrito se insertarán aquí dinámicamente -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-primary" id="checkoutBtn">Pagar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notificaciones -->
+    <div id="notification" class="notification"></div>
+
+    <!-- Scripts de Bootstrap y JavaScript personalizado -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Productos de ejemplo
+            const products = [
+                { id: '001', name: 'Producto 1', price: 10.00, imgSrc: 'assets/product1.jpg' },
+                { id: '002', name: 'Producto 2', price: 15.00, imgSrc: 'assets/product2.jpg' }
+                // Agrega más productos aquí
+            ];
+
+            const productSection = document.getElementById('productSection').querySelector('.row');
+
+            products.forEach(product => {
+                const productCard = document.createElement('div');
+                productCard.classList.add('col-md-4');
+                productCard.innerHTML = `
+                    <div class="card mb-4">
+                        <img src="${product.imgSrc}" class="card-img-top" alt="${product.name}" />
+                        <div class="card-body">
+                            <h5 class="card-title">${product.name}</h5>
+                            <p class="card-text">$${product.price.toFixed(2)}</p>
+                            <button class="btn btn-primary" data-id="${product.id}" data-name="${product.name}" data-price="${product.price}" data-img="${product.imgSrc}">Añadir al carrito</button>
+                        </div>
+                    </div>
+                `;
+                productSection.appendChild(productCard);
+            });
+
+            // Manejo de clics en el botón de añadir al carrito
+            productSection.addEventListener('click', function (event) {
+                if (event.target.tagName === 'BUTTON') {
+                    const id = event.target.getAttribute('data-id');
+                    const name = event.target.getAttribute('data-name');
+                    const price = parseFloat(event.target.getAttribute('data-price'));
+                    const imgSrc = event.target.getAttribute('data-img');
+
+                    const product = { id, name, price, imgSrc, quantity: 1 };
+                    let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+                    const existingProduct = cartItems.find(item => item.id === product.id);
+
+                    if (existingProduct) {
+                        existingProduct.quantity += 1;
+                    } else {
+                        cartItems.push(product);
+                    }
+
+                    localStorage.setItem('cart', JSON.stringify(cartItems));
+                    showNotification('Producto añadido al carrito');
+                    updateCart();
+                }
+            });
+
+            // Mostrar productos en el carrito
+            function updateCart() {
+                const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+                const cartItemsContainer = document.getElementById('cartItems');
+                cartItemsContainer.innerHTML = '';
+
+                if (cartItems.length === 0) {
+                    cartItemsContainer.innerHTML = '<p>El carrito está vacío.</p>';
+                } else {
+                    cartItems.forEach(item => {
+                        const cartItem = document.createElement('div');
+                        cartItem.classList.add('d-flex', 'justify-content-between', 'mb-3');
+                        cartItem.innerHTML = `
+                            <div>
+                                <img src="${item.imgSrc}" class="img-fluid" style="width: 50px; height: 50px; object-fit: cover;" alt="${item.name}" />
+                                ${item.name} - $${item.price.toFixed(2)} x ${item.quantity}
+                            </div>
+                            <button class="btn btn-danger btn-sm" data-id="${item.id}">Eliminar</button>
+                        `;
+                        cartItemsContainer.appendChild(cartItem);
+                    });
+
+                    // Manejo de clics en el botón de eliminar del carrito
+                    cartItemsContainer.addEventListener('click', function (event) {
+                        if (event.target.tagName === 'BUTTON') {
+                            const id = event.target.getAttribute('data-id');
+                            let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+                            cartItems = cartItems.filter(item => item.id !== id);
+                            localStorage.setItem('cart', JSON.stringify(cartItems));
+                            updateCart();
+                        }
+                    });
+                }
+            }
+
+            // Mostrar notificaciones
+            function showNotification(message) {
+                const notification = document.getElementById('notification');
+                notification.textContent = message;
+                notification.classList.add('show');
+                setTimeout(() => {
+                    notification.classList.remove('show');
+                }, 3000);
+            }
+
+            // Actualizar el carrito cuando se abre el modal
+            document.getElementById('cartModal').addEventListener('show.bs.modal', updateCart);
+        });
+    </script>
+</body>
+
+</html>

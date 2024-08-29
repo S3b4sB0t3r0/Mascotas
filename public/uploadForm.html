@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subir Producto - Tienda Pound</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f7f1f5;
+        color: #333;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        flex-direction: column;
+        position: relative;
+      }
+
+      .container {
+        width: 90%; /* Ajustar al 90% del ancho de la pantalla */
+        max-width: 400px; /* Máximo ancho */
+        padding: 20px;
+        background-color: #fff;
+        border: 2px solid #c39bd3;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        text-align: center;
+      }
+
+      .logo img {
+        width: 80%; /* Ajustar el logotipo al 80% del ancho del contenedor */
+        height: auto;
+        margin-bottom: 20px;
+      }
+
+      h2 {
+        margin-bottom: 20px;
+        color: #c39bd3;
+      }
+
+      input[type="text"],
+      input[type="file"] {
+        width: 100%; /* Asegurar que los campos ocupen el 100% del contenedor */
+        padding: 10px;
+        margin: 10px 0;
+        border: 1px solid #c39bd3;
+        border-radius: 5px;
+        box-sizing: border-box;
+      }
+
+      button[type="submit"] {
+        width: 100%;
+        padding: 10px;
+        background-color: #c39bd3;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-top: 10px;
+      }
+
+      button[type="submit"]:hover {
+        background-color: #c39bd3;
+      }
+
+      .back-arrow {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        text-decoration: none;
+        color: #c39bd3;
+        font-size: 24px;
+        display: flex;
+        align-items: center;
+      }
+
+      .back-arrow::before {
+        content: "";
+        display: block;
+        width: 0;
+        height: 0;
+        border-top: 12px solid transparent;
+        border-right: 12px solid #c39bd3;
+        border-bottom: 12px solid transparent;
+        margin-right: 8px;
+      }
+
+      .back-arrow:hover {
+        color: #e09fae;
+      }
+
+      .footer {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        background-color: #c39bd3;
+        color: white;
+        text-align: center;
+        padding: 10px;
+      }
+    </style>
+</head>
+<body>
+  <a href="indexTienda.html" class="back-arrow">Volver</a>
+
+  <div class="container">
+      <div class="logo">
+          <img src="assets/logo.png" alt="Logo Tienda Pound" />
+      </div>
+      <h2>Subir Nuevo Producto</h2>
+      <form id="uploadForm" enctype="multipart/form-data">
+          <input type="text" id="productName" name="productName" placeholder="Nombre del Producto" required />
+          <input type="text" id="productPrice" name="productPrice" placeholder="Precio" required />
+          <input type="file" id="productImage" name="productImage" accept="image/*" required />
+          <button type="submit">Subir Producto</button>
+      </form>
+  </div>
+
+  <div class="footer">
+      ¡Bienvenido a Tienda Pound, tu tienda de confianza!
+  </div>
+  <script src="public/scripts/scripts.js"></script>
+</body>
+</html>

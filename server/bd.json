@@ -1,0 +1,40 @@
+{
+  "usuario": [
+    {
+      "id_user": 1,
+      "nombre_user": "Juan",
+      "correo_user": "juan@gmail.com",
+      "password": "contraseña123",
+      "id": "6da8"
+    },
+    {
+      "id": "6c2b",
+      "id_user": 1724890740451,
+      "nombre_user": "Sebastian",
+      "correo_user": "sbotero151@soy.sena.edu.co",
+      "password": "123456789"
+    },
+    {
+      "id": "e344",
+      "id_user": 1724890939481,
+      "nombre_user": "Sebastian Botero",
+      "correo_user": "sebaspro22210@gmail.com",
+      "password": "123456789"
+    },
+    {
+      "id": "cb35",
+      "id_user": 1724893830907,
+      "nombre_user": "Nicolas",
+      "correo_user": "Nico@gmail.com",
+      "password": "1234"
+    },
+    {
+      "id": "dcb7",
+      "id_user": 1724896749992,
+      "nombre_user": "Gladys",
+      "correo_user": "Gladys@gmail.com",
+      "password": "123456"
+    }
+  ],
+  "products": []
+}

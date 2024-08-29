@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+  <title>Compra - Tienda Pound</title>
+  <link href="css/styles.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <style>
+    /* Estilos específicos para la página de compra */
+    .cart-summary {
+      margin: 20px;
+    }
+    .cart-summary h2 {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+    .cart-summary ul {
+      list-style-type: none;
+      padding: 0;
+    }
+    .cart-summary li {
+      padding: 10px;
+      border-bottom: 1px solid #ddd;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .cart-summary li span {
+      flex-grow: 1;
+    }
+    .checkout-btn {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      background-color: #28a745;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      text-align: center;
+    }
+    .checkout-btn:hover {
+      background-color: #218838;
+    }
+  </style>
+</head>
+<body>
+  <!-- Barra de Navegación -->
+  <!-- (Incluye tu barra de navegación aquí, igual que en indexTienda.html) -->
+
+  <!-- Contenido de Compra -->
+  <div class="container cart-summary">
+    <h2>Resumen de la Compra</h2>
+    <ul id="cartSummaryList">
+      <!-- Los productos del carrito se mostrarán aquí -->
+    </ul>
+    <!-- Botón de pago -->
+    <button class="checkout-btn">Finalizar Compra</button>
+  </div>
+
+  <!-- Footer -->
+  <!-- (Incluye tu footer aquí, igual que en indexTienda.html) -->
+
+  <!-- Scripts -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      var cartSummaryList = document.getElementById("cartSummaryList");
+      var savedCart = localStorage.getItem("cart");
+
+      if (savedCart) {
+        var cart = JSON.parse(savedCart);
+        for (var product in cart) {
+          var item = cart[product];
+          var listItem = document.createElement("li");
+
+          listItem.innerHTML = `
+            <span>${product} - ${item.price}</span>
+            <span>${item.quantity}</span>
+          `;
+          cartSummaryList.appendChild(listItem);
+        }
+      }
+    });
+  </script>
+</body>
+</html>

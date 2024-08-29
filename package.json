@@ -1,0 +1,18 @@
+{
+  "dependencies": {
+    "json-server": "^1.0.0-beta.2",
+    "name": "API_LPC",
+    "version": "1.0.0"
+  },
+  "scripts": {
+    "start": "json-server --watch server/bd.json --port 4000"
+  },
+  "name": "api_lpc",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {},
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
